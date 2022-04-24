@@ -52,7 +52,9 @@ const seedCourses = [
 Course.insertMany(seedCourses)
   .then((res) => {
     console.log(res);
+    process.exit();
   })
   .catch((e) => {
     console.log(e);
+    process.exit();
   });
