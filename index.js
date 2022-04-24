@@ -2,6 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const app = express();
 const path = require("path");
+const Course = require("./models/course");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
