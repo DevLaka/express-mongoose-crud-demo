@@ -15,5 +15,8 @@
     </ul>
     <a href="/courses">All Courses</a>
     <a href="/courses/<%= course._id %>/edit">Edit Course</a>
+    <form action="/courses/<%= course._id %>?_method=DELETE" method="POST">
+      <button>Delete Course</button>
+    </form>
   </body>
 </html>
