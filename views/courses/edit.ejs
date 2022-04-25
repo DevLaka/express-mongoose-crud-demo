@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Course</title>
+  </head>
+  <body>
+    <h1>Edit a course</h1>
+    <form action="/courses/<%= course._id %>?_method=PUT " method="POST">
+      <section>
+        <label for="title">Course Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Course title"
+          value="<%= course.title %>"
+        />
+      </section>
+      <section>
+        <label for="price">Course price</label>
+        <input
+          type="number"
+          name="price"
+          id="price"
+          placeholder="Course price"
+          value="<%= course.price %>"
+        />
+      </section>
+      <section>
+        <label for="category">Course Category</label>
+        <select name="category" id="category">
+          <% for(category of categories) { %>
+          <option value="<%= category.code %>" <%= category.code === course.category ? 'selected' : '' %> >
+            <%= category.displayName %>
+          </option>
+          <% } %>
+        </select>
+      </section>
+      <button>Submit</button>
+    </form>
+    <a href="/courses/<%= course._id %>">Cancel</a>
+  </body>
+</html>

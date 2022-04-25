@@ -10,8 +10,9 @@
     <h1>List of courses</h1>
     <ul>
       <% for(let course of courses) { %>
-      <li><%= course.title %></li>
+      <li><a href="/courses/<%= course._id %>"><%= course.title %></a></li>
       <% } %>
     </ul>
+    <a href="/courses/new">Add new Course</a>
   </body>
 </html>

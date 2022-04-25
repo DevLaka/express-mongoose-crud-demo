@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= course.title %></title>
+  </head>
+  <body>
+    <h1><%= course.title %></h1>
+    <ul>
+      <li>Title: <%= course.title %></li>
+      <li>Price: $<%= course.price %></li>
+      <li>category: <%= course.category %></li>
+    </ul>
+    <a href="/courses">All Courses</a>
+    <a href="/courses/<%= course._id %>/edit">Edit Course</a>
+  </body>
+</html>
