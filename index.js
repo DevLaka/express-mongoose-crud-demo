@@ -36,8 +36,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.get("/courses", async (req, res) => {
-  const courses = await Course.find({});
-  res.render("courses/index", { courses });
+  const { category } = req.query;
+  if (category) {
+    const courses = await Course.find({ category });
+    res.render("courses/index", { courses, category });
+  } else {
+    const courses = await Course.find({});
+    res.render("courses/index", { courses, category: "All" });
+  }
 });
 
 app.get("/courses/new", (req, res) => {
