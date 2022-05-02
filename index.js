@@ -71,15 +71,20 @@ app.get("/courses", async (req, res) => {
   }
 });
 
-app.get("/courses/new", (req, res) => {
-  res.render("courses/new", { categories });
+app.get("/degrees/:id/courses/new", (req, res) => {
+  const { id } = req.params;
+  res.render("courses/new", { categories, id });
 });
 
-app.post("/courses", async (req, res) => {
+app.post("/degrees/:id/courses", async (req, res) => {
+  const { id } = req.params;
   const { title, price, category } = req.body;
-  const course = new Course({ title, price, category });
+  const degree = await Degree.findById(id);
+  const course = new Course({ title, price, category, degree });
+  degree.courses.push(course);
+  await degree.save();
   await course.save();
-  res.redirect(`/courses/${course._id}`);
+  res.send(course);
 });
 
 app.get("/courses/:id", async (req, res) => {
