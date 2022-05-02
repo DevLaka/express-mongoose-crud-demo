@@ -48,7 +48,7 @@ app.get("/degrees/new", (req, res) => {
 
 app.get("/degrees/:id", async (req, res) => {
   const { id } = req.params;
-  const degree = await Degree.findById(id);
+  const degree = await Degree.findById(id).populate("courses");
   res.render("degrees/show", { degree });
 });
 
@@ -71,9 +71,14 @@ app.get("/courses", async (req, res) => {
   }
 });
 
-app.get("/degrees/:id/courses/new", (req, res) => {
+app.get("/degrees/:id/courses/new", async (req, res) => {
   const { id } = req.params;
-  res.render("courses/new", { categories, id });
+  const degree = await Degree.findById(id);
+  res.render("courses/new", { categories, degree });
+});
+
+app.get("/courses/new", (req, res) => {
+  res.render("courses/new", { categories });
 });
 
 app.post("/degrees/:id/courses", async (req, res) => {
@@ -84,12 +89,19 @@ app.post("/degrees/:id/courses", async (req, res) => {
   degree.courses.push(course);
   await degree.save();
   await course.save();
-  res.send(course);
+  res.redirect(`/degrees/${id}`);
+});
+
+app.post("/courses", async (req, res) => {
+  const { title, price, category } = req.body;
+  const course = new Course({ title, price, category });
+  await course.save();
+  res.redirect(`/courses/${course._id}`);
 });
 
 app.get("/courses/:id", async (req, res) => {
   const { id } = req.params;
-  const course = await Course.findById(id);
+  const course = await Course.findById(id).populate("degree", "title");
   res.render("courses/show", { course });
 });
 

@@ -12,9 +12,15 @@
       <li>Title: <%= course.title %></li>
       <li>Price: $<%= course.price %></li>
       <li>
-        category:
+        Category:
         <a href="/courses?category=<%= course.category %>">
           <%= course.category %>
+        </a>
+      </li>
+      <li>
+        Degree:
+        <a href="/degrees/<%= course.degree._id %>">
+          <%= course.degree.title %>
         </a>
       </li>
     </ul>

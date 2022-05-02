@@ -13,6 +13,11 @@
       <li>Credits: <%= degree.totalCredits %></li>
       <li>Department: <%= degree.department %></li>
     </ul>
+    <h2>Courses</h2>
+    <% for(const course of degree.courses) { %>
+    <li><a href="/courses/<%= course._id %> "><%= course.title %></a></li>
+    <% } %>
+    <a href="/degrees/<%= degree._id %>/courses/new">Add course</a>
     <a href="/degrees">All Degrees</a>
   </body>
 </html>
