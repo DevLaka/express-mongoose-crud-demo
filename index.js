@@ -59,6 +59,12 @@ app.post("/degrees", async (req, res) => {
   res.redirect("/degrees");
 });
 
+app.delete("/degrees/:id", async (req, res) => {
+  const { id } = req.params;
+  await Degree.findByIdAndDelete(id);
+  res.redirect("/degrees");
+});
+
 // COURSE ROUTES
 app.get("/courses", async (req, res) => {
   const { category } = req.query;

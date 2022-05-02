@@ -19,5 +19,8 @@
     <% } %>
     <a href="/degrees/<%= degree._id %>/courses/new">Add course</a>
     <a href="/degrees">All Degrees</a>
+    <form action="/degrees/<%= degree.id %>?_method=DELETE" method="POST">
+      <button>Delete</button>
+    </form>
   </body>
 </html>

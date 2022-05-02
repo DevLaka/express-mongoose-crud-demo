@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Course = require("./course");
 const { Schema } = mongoose;
 
 const degreeSchema = new Schema({
@@ -14,6 +15,12 @@ const degreeSchema = new Schema({
       ref: "Course",
     },
   ],
+});
+
+degreeSchema.post("findOneAndDelete", async (degree) => {
+  if (degree.courses.length) {
+    await Course.deleteMany({ _id: { $in: degree.courses } });
+  }
 });
 
 const Degree = mongoose.model("Degree", degreeSchema);
