@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Degree</title>
+  </head>
+  <body>
+    <h1>Create a degree</h1>
+    <form action="/degrees" method="POST">
+      <section>
+        <label for="title">Degree Title</label>
+        <input type="text" name="title" id="title" placeholder="Degree title" />
+      </section>
+      <section>
+        <label for="credits">Total credits</label>
+        <input
+          type="number"
+          name="credits"
+          id="credits"
+          placeholder="Total credits"
+        />
+      </section>
+      <section>
+        <label for="department">Department</label>
+        <input
+          type="text"
+          name="department"
+          id="department"
+          placeholder="Department"
+        />
+      </section>
+      <button>Submit</button>
+    </form>
+    <a href="/courses">All Courses</a>
+  </body>
+</html>

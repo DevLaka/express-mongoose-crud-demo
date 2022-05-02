@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const Course = require("./models/course");
+const Degree = require("./models/degree");
 
 const categories = [
   {
@@ -35,6 +36,24 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+// DEGREE ROUTES
+app.get("/degrees", async (req, res) => {
+  const degrees = await Degree.find({});
+  res.render("degrees/index", { degrees });
+});
+
+app.get("/degrees/new", (req, res) => {
+  res.render("degrees/new");
+});
+
+app.post("/degrees", async (req, res) => {
+  const { title, credits, department } = req.body;
+  const degree = new Degree({ title, credits, department });
+  await degree.save();
+  res.redirect("/degrees");
+});
+
+// COURSE ROUTES
 app.get("/courses", async (req, res) => {
   const { category } = req.query;
   if (category) {

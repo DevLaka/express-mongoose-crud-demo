@@ -15,6 +15,10 @@ const courseSchema = new mongoose.Schema({
     lowercase: true,
     enum: ["cs", "bs", "eng"],
   },
+  degree: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Degree",
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);
