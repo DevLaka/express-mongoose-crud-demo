@@ -46,9 +46,15 @@ app.get("/degrees/new", (req, res) => {
   res.render("degrees/new");
 });
 
+app.get("/degrees/:id", async (req, res) => {
+  const { id } = req.params;
+  const degree = await Degree.findById(id);
+  res.render("degrees/show", { degree });
+});
+
 app.post("/degrees", async (req, res) => {
-  const { title, credits, department } = req.body;
-  const degree = new Degree({ title, credits, department });
+  const { title, credits: totalCredits, department } = req.body;
+  const degree = new Degree({ title, totalCredits, department });
   await degree.save();
   res.redirect("/degrees");
 });

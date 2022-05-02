@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Degrees</title>
+    <title><%= degree.title %></title>
   </head>
   <body>
-    <h1>All Degrees</h1>
+    <h1><%= degree.title %></h1>
     <ul>
-      <% for(let degree of degrees) { %>
-      <li><a href="/degrees/<%= degree._id %>"><%= degree.title %></a></li>
-      <% } %>
+      <li>Title: <%= degree.title %></li>
+      <li>Credits: <%= degree.totalCredits %></li>
+      <li>Department: <%= degree.department %></li>
     </ul>
+    <a href="/degrees">All Degrees</a>
   </body>
 </html>
